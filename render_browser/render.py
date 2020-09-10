@@ -1,9 +1,11 @@
+import os
 import cv2
-import numpy as np
-import matplotlib.pyplot as plt
 from flask import Flask, request, render_template, Response
 
-app = Flask(__name__)
+DIR_PATH = os.path.dirname(os.path.abspath(__file__))
+TEMPLATE_PATH = os.path.join(DIR_PATH, 'templates/')
+
+app = Flask(__name__, template_folder=TEMPLATE_PATH)
 
 @app.route('/')
 def index():
