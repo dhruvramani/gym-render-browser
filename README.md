@@ -32,7 +32,7 @@ test_policy(policy)
 
 When you visit `your_ip:5000` on your browser, `test_policy()` will be called and you'll be able to see the rendered environment on your browser window.  
 
-<img src="env_render.gif" height="50%">
+<img src="env_render.gif" height="400px">
 
 ## TODO
 + Stop flask server once the rendering stops - so that render_browser can be called more than once in a single run.
