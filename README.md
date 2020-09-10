@@ -2,8 +2,6 @@
 
 While working on a head-less server, it can be a little tricky to render and see your environment simulation. This script allows you to render your environment onto a browser by just adding one line to your code.
 
-![Screenshot GIF](env_render.gif)
-
 ## Installation
 ```shell
 xvfb-run -s "-screen 0 1400x900x24" bash # Run this if you're using a head-less server.
@@ -33,6 +31,8 @@ test_policy(policy)
 ```
 
 When you visit `your_ip:5000` on your browser, `test_policy()` will be called and you'll be able to see the rendered environment on your browser window.  
+
+<img src="env_render.gif" height="50%">
 
 ## TODO
 + Stop flask server once the rendering stops - so that render_browser can be called more than once in a single run.
