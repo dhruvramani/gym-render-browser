@@ -11,8 +11,8 @@ app = Flask(__name__, template_folder=TEMPLATE_PATH)
 def index():
     return render_template('index.html')
 
-def frame_gen(env_func, *args, **kwargs):
-    get_frame = env_func(*args, **kwargs)
+def frame_gen(env_func, *args):
+    get_frame = env_func(*args)
     while True:
         frame = next(get_frame, None)
         if frame is None:
@@ -22,10 +22,10 @@ def frame_gen(env_func, *args, **kwargs):
         yield (b'--frame\r\n' + b'Content-Type: image/png\r\n\r\n' + frame + b'\r\n')
 
 def render_browser(env_func):
-    def wrapper(*args, **kwargs):
+    def wrapper(*args):
         @app.route('/render_feed')
         def render_feed():
-            return Response(frame_gen(env_func=env_func, *args, **kwargs), mimetype='multipart/x-mixed-replace; boundary=frame')
+            return Response(frame_gen(env_func, *args), mimetype='multipart/x-mixed-replace; boundary=frame')
 
         print("Starting rendering, check `server_ip:5000`.")
         app.run(host='0.0.0.0', port='5000', debug=False)
